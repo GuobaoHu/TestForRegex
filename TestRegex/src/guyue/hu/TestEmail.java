@@ -36,7 +36,15 @@ public class TestEmail {
 			while((str = br.readLine()) != null) {
 				m = p.matcher(str);
 				while(m.find()) {
-					results.add(m.group());
+					if(m.group(2).equals("qq")) {
+						Pattern pChild = Pattern.compile("[1-9][\\d]+@qq\\.com");
+						Matcher mChild = pChild.matcher(m.group());
+						if(mChild.find()) {
+							results.add(mChild.group());
+						}
+					} else {
+						results.add(m.group());
+					}
 				}
 			}
 			br.close();
